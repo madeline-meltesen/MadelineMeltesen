@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madeline Meltesen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Lexend', sans-serif;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Lexend Exa', sans-serif;
+        }
+        
+        h3 {
+            line-height: 1.5; 
+            padding-left: 15%; 
+            padding-right: 15%;
+            margin-bottom: 10px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 1px;
+            text-align: center;
+            font-family: 'Lexend Exa', sans-serif;
+            font-size: 90%;
+            clear: both;
+        }
+        .container-head {
+            padding: 20px;
+            padding-bottom: 0px;
+            text-align: center;
+        }
+        .container-left {
+            padding: 0px;
+            padding-left: 0.4%;
+            text-align: center;
+            width: 49.6%;
+            float: left;  
+            margin-bottom: 20px;
+        }
+        .container-right {
+            padding: 0px;
+            padding-right: 0.4%;
+            text-align: center;
+            width: 49.6%;
+            float: right;  
+            margin-bottom: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            background: #555;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gallery img {
+            max-width: 40%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }     
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Adjust to center caption vertically */
+            text-align: center;
+        }
+
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 5px;
+        }
+
+        .modal .caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal .prev,
+        .modal .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            user-select: none;
+        }
+        .modal .prev {
+            left: 10%;
+        }
+
+        .modal .next {
+            right: 10%;
+        }
+
+        .modal .prev:hover,
+        .modal .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Madeline Meltesen</h1>
+    </header>
+    <nav>
+        <a href="my_website.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="presentations.html">Presentations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <h2 style="margin-bottom: 0px;">Undergraduate Maps Using Adobe Illustrator & MAPublisher</h2>
+    </div>
+    
+    <div class="container-left">
+        <h3>Republic of Indonesia, Greyscale</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design1.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Greyscale">
+        </div>
+        <br>
+        <h3>Republic of Indonesia, Green</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design2.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Green">
+        </div>
+        <br>
+        <h3>Republic of Indonesia, Blue</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design3.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Blue">
+        </div>
+        <br>
+        <h3>Republic of Indonesia, Purple</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design4.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Purple">
+        </div>
+        <br>        
+    </div>
+
+    <div class="container-right">  
+        <h3>Contiguous United States</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design5.png" style="max-width: 75%"; height="auto"; data-caption="Contiguous United States">
+        </div>
+        <br>
+        <h3>United States International Exports</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design6.png" style="max-width: 75%"; height="auto"; data-caption="United States International Exports">
+        </div>
+        <br>
+        <h3>Lava Flow Hazard Zones of Hawaii's Big Island</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design7.png" style="max-width: 72%"; height="auto"; data-caption="Lava Flow Hazard Zones of Hawaii's Big Island">
+        </div>
+        <br>        
+        <h3>The Lake Winnebago Corridor, Wisconsin, USA</h3>
+        <div class="gallery">
+            <img src="Images/GIS_maps/Map_Design/design8.png" style="max-width: 72%"; height="auto"; data-caption="The Lake Winnebago Corridor, Wisconsin, USA">
+        </div>
+        <br>        
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Madeline Meltesen.</p>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="prev" id="prev">&#10094;</span>
+        <img id="modalImage">
+        <div class="caption" id="caption"></div>
+        <span class="next" id="next">&#10095;</span>
+    </div>
+ 
+</body>
+    
+    <!-- JS to enlarge gallery images with nav arrows -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = document.getElementById("imageModal");
+            const modalImage = document.getElementById("modalImage");
+            const caption = document.getElementById("caption"); // Add reference for caption
+            const prevBtn = document.getElementById("prev");
+            const nextBtn = document.getElementById("next");
+            const images = Array.from(document.querySelectorAll(".gallery img"));
+            let currentIndex = 0;
+
+            function openModal(index) {
+                currentIndex = index;
+                modalImage.src = images[currentIndex].src;
+                caption.textContent = images[currentIndex].getAttribute("data-caption"); // Set caption text
+                modal.classList.add("active");
+            }
+
+            function closeModal() {
+                modal.classList.remove("active");
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                modalImage.src = images[currentIndex].src;
+                caption.textContent = images[currentIndex].getAttribute("data-caption"); // Update caption for next image
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                modalImage.src = images[currentIndex].src;
+                caption.textContent = images[currentIndex].getAttribute("data-caption"); // Update caption for previous image
+            }
+
+            images.forEach((img, index) => {
+                img.addEventListener("click", () => openModal(index));
+            });
+
+            modal.addEventListener("click", closeModal);
+            nextBtn.addEventListener("click", (event) => {
+                event.stopPropagation();
+                showNextImage();
+            });
+
+            prevBtn.addEventListener("click", (event) => {
+                event.stopPropagation();
+                showPrevImage();
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (modal.classList.contains("active")) {
+                    if (event.key === "ArrowRight") {
+                        showNextImage();
+                    } else if (event.key === "ArrowLeft") {
+                        showPrevImage();
+                    } else if (event.key === "Escape") {
+                        closeModal();
+                    }
+                }
+            });
+        });
+    </script>    
+</html>
