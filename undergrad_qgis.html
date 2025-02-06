@@ -43,17 +43,17 @@
         }
         .container-left {
             padding: 0px;
-            padding-left: 0.4%;
+            padding-left: 10%;
             text-align: center;
-            width: 49.6%;
+            width: 40%;
             float: left;  
             margin-bottom: 20px;
         }
         .container-right {
             padding: 0px;
-            padding-right: 0.4%;
+            padding-right: 10%;
             text-align: center;
-            width: 49.6%;
+            width: 40%;
             float: right;  
             margin-bottom: 20px;
         }
@@ -75,6 +75,9 @@
         .container {
             padding: 20px;
             text-align: center;
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-bottom: 0px;
         }
         .gallery {
             display: flex;
@@ -107,7 +110,6 @@
             flex-direction: column; /* Adjust to center caption vertically */
             text-align: center;
         }
-
         .modal img {
             max-width: 80%;
             max-height: 80%;
@@ -120,11 +122,9 @@
             font-size: 18px;
             font-weight: bold;
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal .prev,
         .modal .next {
             position: absolute;
@@ -164,30 +164,32 @@
     </nav>
     <div class="container">
         <h2 style="margin-bottom: 0px;">Undergraduate Maps Using QGIS</h2>
+        <p style="line-height: 1.5;">My map-making journey began in the summer of 2022 during a six-week archaeological field school in Rabe, Serbia. There, I collaborated with a postgraduate student to conduct magnetic susceptibility testing and mapped the results using QGIS. 
+        </p>
     </div>
     
     <div class="container-left">
-        <h3>NAME OF MAP</h3>
+        <h3>Excavation Locations Compared with Topography and Geology of Rabe Anka Siget Archaeological Site</h3>
         <div class="gallery">
-            <img src="Images/GIS_maps/_______" style="max-width: 75%"; height="auto"; data-caption="NAME OF MAP">
+            <img src="Images/GIS_maps/qgis/1geology_topography.png" style="max-width: 75%"; height="auto"; data-caption="Excavation Locations Compared with Topography and Geology of Rabe Anka Siget Archaeological Site">
         </div>
         <br>
-        <h3>NAME OF MAP</h3>
+        <h3>Magnetic Susceptibility Transect Locations</h3>
         <div class="gallery">
-            <img src="Images/GIS_maps/_______" style="max-width: 75%"; height="auto"; data-caption="NAME OF MAP">
+            <img src="Images/GIS_maps/qgis/2magsus_transects.png" style="max-width: 75%"; height="auto"; data-caption="Magnetic Susceptibility Transect Locations">
         </div>
         <br>
     </div>
 
     <div class="container-right">  
-        <h3>NAME OF MAP</h3>
+        <h3>Magnetic Susceptibility Transects and Topography</h3>
         <div class="gallery">
-            <img src="Images/GIS_maps/_______" style="max-width: 75%"; height="auto"; data-caption="NAME OF MAP">
+            <img src="Images/GIS_maps/qgis/3topography_transects.png" style="max-width: 75%"; height="auto"; data-caption="Magnetic Susceptibility Transects and Topography">
         </div>
         <br>
-        <h3>NAME OF MAP</h3>
+        <h3>Magnetic Susceptibility Transects and Underlying Geology</h3>
         <div class="gallery">
-            <img src="Images/GIS_maps/_______" style="max-width: 75%"; height="auto"; data-caption="NAME OF MAP">
+            <img src="Images/GIS_maps/qgis/4geology_transects.png" style="max-width: 75%"; height="auto"; data-caption="Magnetic Susceptibility Transects and Underlying Geology">
         </div>
         <br>        
     </div>
