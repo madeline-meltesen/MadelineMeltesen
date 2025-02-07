@@ -12,7 +12,6 @@
             padding: 0;
             background-color: #f4f4f4;
             font-family: 'Lexend', sans-serif;
-            height: 100%;
         }
         header {
             background: #333;
@@ -21,29 +20,46 @@
             text-align: center;
             font-family: 'Lexend Exa', sans-serif;
         }
+        img {
+            margin-top: 0px;
+            padding: 0;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.1));
+        }
+        h3 {
+            line-height: 1.5; 
+            padding-left: 12%; 
+            padding-right: 12%;
+            margin-bottom: 10px;
+        }
         footer {
             background: #333;
             color: #fff;
-            padding: 4px;
-            padding-top: 14.5px;
+            padding: 1px;
             text-align: center;
             font-family: 'Lexend Exa', sans-serif;
             font-size: 90%;
             clear: both;
-        }            
-        h3 {
-            margin-bottom: 5px;
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 0px;
-            line-height: 1.5;
         }
-        p {
-            padding-left: 4%;
-            padding-right: 4%;
-            margin: 10px;
-            margin-top: 0px;
-            line-height: 1.5;
+        .container-head {
+            padding: 20px;
+            padding-bottom: 0px;
+            text-align: center;
+        }
+        .container-left {
+            padding: 0px;
+            padding-left: 10%;
+            text-align: center;
+            width: 40%;
+            float: left;  
+            margin-bottom: 20px;
+        }
+        .container-right {
+            padding: 0px;
+            padding-right: 10%;
+            text-align: center;
+            width: 40%;
+            float: right;  
+            margin-bottom: 20px;
         }
         nav {
             display: flex;
@@ -60,27 +76,13 @@
         nav a:hover {
             background: #555;
         }
-        .container-head {
+        .container {
             padding: 20px;
+            text-align: center;
+            padding-left: 10%;
+            padding-right: 10%;
             padding-bottom: 0px;
-            text-align: center;
         }
-        .container-left {
-            padding: 0px;
-            padding-left: 5%;
-            text-align: center;
-            width: 45%;
-            float: left;  
-            margin-bottom: 20px;
-        }
-        .container-right {
-            padding: 0px;
-            padding-right: 5%;
-            text-align: center;
-            width: 45%;
-            float: right;  
-            margin-bottom: 20px;
-        }        
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -88,6 +90,7 @@
             justify-content: center;
             margin-top: 10px;
         }
+
         .gallery img {
             max-width: 40%;
             height: auto;
@@ -116,9 +119,10 @@
             max-height: 80%;
             border-radius: 5px;
         }
+
         .modal .caption {
             color: white;
-            margin-top: 20px;
+            margin-top: 15px;
             font-size: 18px;
             font-weight: bold;
         }
@@ -141,13 +145,15 @@
         .modal .prev {
             left: 10%;
         }
+
         .modal .next {
             right: 10%;
         }
+
         .modal .prev:hover,
         .modal .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
-        }
+        }      
         
         /* Dropdown Styles */
         .dropdown {
@@ -186,7 +192,7 @@
         .dropdown:hover > a {
             background: #555;
         }
-
+       
         #myBtn {
           display: none; /* Hidden by default */
           position: fixed; /* Fixed/sticky position */
@@ -205,10 +211,12 @@
         }
         #myBtn:hover {
           background-color: #555; /* Add a dark-grey background on hover */
-        }     
+        } 
+        
+    <!--BACK TO TOP BUTTON-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         
     </style>
-    
 </head>
 <body>
     <header>
@@ -229,69 +237,44 @@
         <a href="presentations.html">Presentations</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <div class="container-head">
-        <h2>Presentations</h2>
+    <div class="container">
+        <h2 style="margin-bottom: 0px;">Undergraduate WebMaps</h2>
+        <p style="line-height: 1.5; padding-left: 9%; padding-right: 9%;">_____________________. 
+        </p>
     </div>
     
     <div class="container-left">
-        <h3>
-            UWL Research & Creativity Symposium
+        <h3 style="line-height: 1.5">
+        <a href="webmaps/Labs/final_project/finalproject_updated.html" target="_blank">Selected Archaeological Sites Throughout Time in the UK</a>
         </h3>
-        <p>03 May 2024<br>
-            Poster presentation at the annual UWL Research & Creativity Symposium in La Crosse, Wisconsin. Read more about this research <a href="https://www.uwlax.edu/post/12bf74e1-9290-4109-b313-8e96b471a4c6" target="_blank">here</a>.
-        </p>
-        <div class="gallery">
-            <img src="Images/presentations/uwl3.JPG" style="max-width: 40%"; height="auto"; data-caption="Poster at the UWL Research & Creativity Symposium">
-            <img src="Images/presentations/uwl2.JPG" style="max-width: 40%"; height="auto"; data-caption="Presenting at the UWL Research & Creativity Symposium">
-            <img src="Images/presentations/uwl1.JPG" style="max-width: 40%"; height="auto"; data-caption="Presenting at the UWL Research & Creativity Symposium">
-            <img src="Images/presentations/uwl4.JPG" style="max-width: 33%"; height="auto"; data-caption="Presenting at the UWL Research & Creativity Symposium">
-        </div>
-            
+        <a href="webmaps/Labs/final_project/finalproject_updated.html" target="_blank">
+            <img src="webmaps/Images/UKarch_map.png" style="max-width:70%; height:auto;">
+        </a>
+        <br>        
+        <h3 style="line-height: 1.5">
+        <a href="webmaps/Labs/lab_9/geo455_lab9.html" target="_blank">Dane County Commute Flow Map</a>
+        </h3>
+        <a href="webmaps/Labs/lab_9/geo455_lab9.html" target="_blank">
+            <img src="webmaps/Images/flowmap.png" style="max-width:70%; height:auto;">
+        </a>
         <br>
-        
-        <h3>
-            Research in the Rotunda
-        </h3>
-        <p>06 March 2024<br>
-        Poster presentation at the 20th Annual Research in the Rotunda in Madison, Wisconsin. Read more about it <a href="https://www.uwlax.edu/post/63f3a588-caec-49ff-8943-acc7d81132fc" target="_blank">here</a>.
-        </p>
-        <div class="gallery">
-            <img src="Images/presentations/rotunda1.jpg" style="max-width:40%; height:auto;" data-caption="Presenting to State Senator Brad Pfaff at the 20th Annual Research in the Rotunda">
-            <img src="Images/presentations/rotunda4.jpg" style="max-width:32%; height:auto;" data-caption="Poster at the 20th Annual Research in the Rotunda">
-            <img src="Images/presentations/rotunda2.jpeg" style="max-width: 40%; height:auto;" data-caption="Presenting at the 20th Annual Research in the Rotunda">
-            <img src="Images/presentations/rotunda3.jpeg" style="max-width: 40%; height:auto;" data-caption="Presenting to State Representative Jill Billings the 20th Annual Research in the Rotunda">
-        </div>
     </div>
-    
-    <div class="container-right">
-        <h3>
-            National Conference on Undergraduate Research (NCUR)
-        </h3>        
-        <p>09 April 2024<br>
-        Poster presentation at the National Conference on Undergraduate Research in Long Beach, California.</p>
-        <div class="gallery">
-            <img src="Images/presentations/ncur4.jpg" style="max-width:40%; height:auto;" data-caption="Poster at the National Conference on Undergraduate Research">
-            <img src="Images/presentations/ncur2.jpeg" style="max-width:38%; height:auto;" data-caption="The National Conference on Undergraduate Research (NCUR)">
-            <img src="Images/presentations/ncur1.jpg" style="max-width:45%; height:auto;" data-caption="Presenting at the National Conference on Undergraduate Research">
-        </div>
-        <br>
-        <h3>
-            Geography & Environmental Science GIS & Mapping Event
-        </h3>
-        <p>08 December 2023<br>
-        Poster presentations at the 10th Annual Geography & Environmental Science GIS & Mapping Event at UW-La Crosse. Read more about it <a href="https://www.uwlax.edu/post/7bb67caf-fc69-4880-b35b-2fcd61cad492" target="_blank">here</a>.</p>
-        <div class="gallery">
-            <img src="Images/presentations/gis_poster.jpg" style="max-width:40.5%; height:auto;" data-caption="1st place GIS Poster at the 10th Annual Geography & Environmental Science GIS & Mapping Event">
-            <img src="Images/presentations/mapping_poster.jpg" style="max-width:40.5%; height:auto;" data-caption="2nd place Mapping Poster at the 10th Annual Geography & Environmental Science GIS & Mapping Event">
-        </div>
-    </div>    
 
-    <!-- enlarge image format -->
-    <div class="modal" id="imageModal">
-        <span class="prev" id="prev">&#10094;</span>
-        <img id="modalImage" src="" alt="Enlarged Image">
-        <div id="caption" class="caption"></div> <!-- Caption area -->
-        <span class="next" id="next">&#10095;</span>
+    <div class="container-right">  
+        <h3 style="line-height: 1.5">
+        <a href="webmaps/Labs/lab_6/geo455_lab6.html" target="_blank">Population & English Speaking Household Densities of London</a>
+        </h3>
+        <a href="webmaps/Labs/lab_6/geo455_lab6.html" target="_blank">
+            <img src="webmaps/Images/pop_dens_map.png" style="max-width:70%; height:auto;">
+        </a>
+        <br>
+        <h3 style="line-height: 1.5">
+        <a href="webmaps/Labs/lab_7/geo455_lab7.html" target="_blank">Expeditions and Fatalities in the Himalayas</a>
+        </h3>
+        <a href="webmaps/Labs/lab_7/geo455_lab7.html" target="_blank">
+            <img src="webmaps/Images/himalayas_map.png" style="max-width:68%; height:auto;">
+        </a>
+        <br>        
     </div>
 
     <footer>
@@ -300,7 +283,7 @@
 
     <!--BACK TO TOP BUTTON-->
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-
+    
 </body>
     
     <!-- image gallery js -->
