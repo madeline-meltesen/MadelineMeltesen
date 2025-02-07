@@ -67,17 +67,17 @@
         }
         .container-left {
             padding: 0px;
-            padding-left: 2%;
+            padding-left: 5%;
             text-align: center;
-            width: 48%;
+            width: 45%;
             float: left;  
             margin-bottom: 20px;
         }
         .container-right {
             padding: 0px;
-            padding-right: 2%;
+            padding-right: 5%;
             text-align: center;
-            width: 48%;
+            width: 45%;
             float: right;  
             margin-bottom: 20px;
         }        
@@ -206,6 +206,7 @@
         #myBtn:hover {
           background-color: #555; /* Add a dark-grey background on hover */
         }     
+        
     </style>
     
 </head>
@@ -364,26 +365,6 @@
         });
     </script>
 
-    <script>
-        // Get the button:
-        let mybutton = document.getElementById("myBtn");
-
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-          } else {
-            mybutton.style.display = "none";
-          }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-    </script>
+    <script src="ToTop_button.js"></script>
     
 </html>
