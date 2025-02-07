@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Final Project</title>
+    
+<!-- jQuery from CDN -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<!-- Leaflet from CDN -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<!-- Esri Leaflet from CDN -->
+   <script src="https://unpkg.com/esri-leaflet@3.0.7/dist/esri-leaflet.js"
+    integrity="sha512-ciMHuVIB6ijbjTyEdmy1lfLtBwt0tEHZGhKVXDzW7v7hXOe+Fo3UA1zfydjCLZ0/vLacHkwSARXB5DmtNaoL/g=="
+    crossorigin=""></script>
+<!-- Esri Leaflet Vector from CDN -->
+    <script src="https://unpkg.com/esri-leaflet-vector@3.1.2/dist/esri-leaflet-vector.js"
+    integrity="sha512-SnA/TobYvMdLwGPv48bsO+9ROk7kqKu/tI9TelKQsDe+KZL0TUUWml56TZIMGcpHcVctpaU6Mz4bvboUQDuU3w==" crossorigin=""></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    
+<style>
+    /* Reset default margin and padding */
+    body, h1, p {
+        margin: 0;
+        padding: 0;
+    }
+    /* Set full height for the body */
+    body {
+        height: 100vh;
+        margin: 0;
+        overflow: hidden; /* Hide overflow to prevent scrollbars */
+        position: relative; /* Set relative positioning for absolute positioning of children */
+    }
+    /* Header styles */
+    header {
+        background-color: #333;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        letter-spacing: .5px;
+        padding: 10px;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        z-index: 2; /* Ensure header is above other elements */
+    }
+    /* Left container styles */
+    #left-menu {
+        background-color: #555;
+        color: #fff;
+        font-family: "Calibri", sans-serif;
+        padding: 8px;
+        width: 20%; /* Width of the left menu */
+        position: absolute;
+        top: 60px; /* Adjust to avoid covering header */
+        bottom: 0;
+        overflow-y: auto; /* Add vertical scrollbar if content exceeds the container height */
+        z-index: 1; /* Ensure left menu is behind header */
+    }
+    /* Main content styles */
+    main {
+        position: absolute;
+        left: 21%; /* Adjust left position to accommodate the left menu */
+        top: 60px; /* Adjust to avoid covering header */
+        right: 0;
+        bottom: 0;
+        overflow: hidden; /* Hide overflow to prevent scrollbars */
+        z-index: 0; /* Ensure main content is behind other elements */
+    }
+    #map {
+        width: 100%;
+        height: 100%;
+        background-color: lightgray; /* Just for visualization */
+    }
+    
+/* Slider track styles for WebKit browsers */
+    .slider {
+        position: absolute;
+        bottom: 7.8%;
+        left: 23%;
+        width: 72%;
+        height: 10px;
+        z-index: 5000;
+        background-color: rgba(245, 245, 245, 0.9);
+        border-radius: 10px;
+        border: solid 1px;
+        border-color: rgba(192, 192, 192, 0.9);
+        padding-left: 10px; 
+        padding-right: 10px;
+        -webkit-appearance: none; /* Remove default styles */
+        appearance: none;
+    }
+/* Slider thumb styles */
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Remove default styles */
+        appearance: none;
+        width: 20px; /* Width of the slider thumb */
+        height: 20px; /* Height of the slider thumb */
+        background-color: #ffa500; /* Color of the slider thumb */
+        border-radius: 50%; /* Border radius to make it round */
+        cursor: pointer; /* Cursor style on hover */
+    }
+    .slider::-moz-range-thumb {
+        width: 20px; /* Width of the slider thumb */
+        height: 20px; /* Height of the slider thumb */
+        background-color: #ffa500; /* Color of the slider thumb */
+        border-radius: 50%; /* Border radius to make it round */
+        cursor: pointer; /* Cursor style on hover */
+    }
+    /* Change color of slider thumb on hover */
+    .slider::-webkit-slider-thumb:hover {
+        background-color: #ff7f00 !important; /* Change color on hover */
+    }
+    .slider::-moz-range-thumb:hover {
+        background-color: #ff7f00 !important; /* Change color on hover */
+    }
+    #sliderLabels {
+        display: flex;
+        font-family: "Calibri", sans-serif;
+        font-weight: bold;
+        justify-content: space-between;
+        background-color: rgba(245, 245, 245, 0.9);
+        border: solid 1px;
+        border-color: rgba(192, 192, 192, 0.9);
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-radius: 10px;
+        position: absolute;
+        bottom: 4.5%;
+        left: 23%; 
+        width: 72%;
+        z-index: 5500;
+    }
+    .sliderLabel {
+        font-size: 14px; /* Adjust as needed */
+        color: #333;
+        width: auto;
+        text-align: center;
+        z-index: 5500;
+    }
+/* Footer styles */
+    footer {
+        background-color: #333;
+        color: #fff;
+        font-family: "Roboto", sans-serif;
+        font-style: italic;
+        font-size: 80%;
+        letter-spacing: 1px;
+        padding: 6px;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 2; 
+    }
+/* Basemap Layer Switch */
+    .leaflet-control-layers {
+        background-color: rgba(245, 245, 245, 0.85);
+        font-family: "Roboto", sans-serif;
+        font-size: 120%;
+    }
+    input[type='radio']:after {
+        width: 11px;
+        height: 11px;
+        border-radius: 15px;
+        top: -.7px;
+        left: -.4px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        background-color: #ffa500;
+    }
+        
+</style>
+</head>
+<body>
+    <header>
+        <h1>Selected Archaeological Sites Throughout Time in the UK</h1>
+    </header>
+    <div id="left-menu">
+        <p>This is the left menu content.</p>
+    </div>
+    
+    <!-- RANGE SLIDER -->
+<div id="sliderContainer">
+    <input type="range" min="0" max="7" value="7" class="slider" id="timeSlider">
+    
+    <div id="sliderLabels">
+        <span class="sliderLabel">Paleolithic &nbsp&nbsp </span>
+        <span class="sliderLabel">Mesolithic &nbsp&nbsp </span>
+        <span class="sliderLabel">Neolithic &nbsp&nbsp </span>
+        <span class="sliderLabel">Bronze Age &nbsp&nbsp </span>
+        <span class="sliderLabel">Iron Age &nbsp&nbsp </span>
+        <span class="sliderLabel">Roman &nbsp&nbsp </span>
+        <span class="sliderLabel">Anglo-Saxon &nbsp&nbsp </span>
+        <span class="sliderLabel">Medieval</span>
+    </div>
+
+</div>
+    
+    <main>
+        <div id="map"></div>
+    </main>
+    <footer>
+        <p>Map developed by Madeline Meltesen | <a style="color: lightgrey" href='../index.html'>Go back to main page</a></p>
+    </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var mymap = L.map("map").setView([54.35, -2.5420], 6);
+        var streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        var grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2NoYXVkaHVyaSIsImEiOiJjazBtcG5odG8wMDltM2JtcjdnYTgyanBnIn0.qwqjMomdrBMG36GQKXBlMw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/light-v9',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        var topo = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
+            layers: 'SRTM30-Colored-Hillshade'
+        });
+
+        streets.addTo(mymap);
+
+        var baseLayers = {
+            'Streets': streets,
+            'Grayscale': grayscale,
+            "Hillshade": topo
+        };
+        
+L.control.layers(baseLayers, null, { collapsed: false }).addTo(mymap);
+
+// Set up site variables and individual sites
+        // Paleolithic Sites
+        var paviland = L.marker([51.550144, -4.255517]).bindPopup('Paviland').addTo(mymap);
+        var kents = L.marker([50.46772, -3.502676]).bindPopup('Kents Cavern').addTo(mymap);
+        var goughs = L.marker([51.2819, -2.7654]).bindPopup('Gough\'s Cave').addTo(mymap);
+        var creswell = L.marker([53.26347, -1.193535]).bindPopup('Creswell Crags').addTo(mymap);
+        var eartham = L.marker([50.869542, -0.689675]).bindPopup('Eartham Pit').addTo(mymap);
+        var swanscombe = L.marker([51.444256, 0.296609]).bindPopup('Swanscombe').addTo(mymap);
+        var happisburgh = L.marker([52.825278, 1.535]).bindPopup('Happisburgh').addTo(mymap);
+        // Mesolithic Sites
+        var starcarr = L.marker([54.214167, -0.423333]).bindPopup('Star Carr').addTo(mymap);
+        var howick = L.marker([55.454, -1.593]).bindPopup('Howick').addTo(mymap);
+        var oare = L.marker([51.344, 0.886]).bindPopup('Oare Marshes').addTo(mymap);
+        var hauxley = L.marker([55.3184, -1.5512]).bindPopup('Low Hauxley').addTo(mymap);
+        var fawr = L.marker([51.719722, -3.568333]).bindPopup('Llyn Fawr').addTo(mymap);
+        var sandel = L.marker([55.1161, -6.6642]).bindPopup('Mount Sandel').addTo(mymap);
+        // Neolithic Sites
+        var skarabrae = L.marker([59.048714, -3.34175]).bindPopup('Skara Brae').addTo(mymap);
+        var pentre = L.marker([51.999, -4.77]).bindPopup('Pentre Ifan').addTo(mymap);
+        var bryn = L.marker([53.2077, -4.2361]).bindPopup('Bryn Celli Ddu').addTo(mymap);
+        var stonehenge = L.marker([51.178889, -1.826111]).bindPopup('Stonehenge').addTo(mymap);
+        var avebury = L.marker([51.428611, -1.854167]).bindPopup('Avebury').addTo(mymap);
+        var silbury = L.marker([51.4157, -1.8574]).bindPopup('Silbury Hill').addTo(mymap);
+        var callanish = L.marker([58.197541, -6.745145]).bindPopup('Callanish Stones').addTo(mymap);
+        var brodgar = L.marker([59.001482, -3.229723]).bindPopup('Ring of Brodgar').addTo(mymap);
+        // Bronze Age Sites
+        var mustfarm = L.marker([52.555236, -0.177319]).bindPopup('Must Farm').addTo(mymap);
+        var grimspound = L.marker([50.61331, -3.83738]).bindPopup('Grimspound').addTo(mymap);
+        var flag = L.marker([52.574, -0.19]).bindPopup('Flag Fen').addTo(mymap);
+        var beaghmore = L.marker([54.701466, -6.938701]).bindPopup('Beaghmore').addTo(mymap);
+        var milton = L.marker([52.033, -0.711]).bindPopup('Milton Keynes Hoard').addTo(mymap);
+        var rillaton = L.marker([50.5211, -4.4557]).bindPopup('Rillaton Barrow').addTo(mymap);
+        // Iron Age Sites
+        var glastonbury = L.marker([51.163611, -2.725833]).bindPopup('Glastonbury').addTo(mymap);
+        var carn = L.marker([50.10234, -5.63448]).bindPopup('Carn Euny').addTo(mymap);
+        var oswestry = L.marker([52.87273, -3.04886]).bindPopup('Old Oswestry Hillfort').addTo(mymap);
+        var maiden = L.marker([50.695, -2.47]).bindPopup('Maiden Castle').addTo(mymap);
+        var danebury = L.marker([51.136681, -1.537569]).bindPopup('Danebury Hill Fort').addTo(mymap);
+        var honington = L.marker([52.969925, -0.580756]).bindPopup('Honington Camp').addTo(mymap);
+        var cerrig = L.marker([53.25885, -4.540288]).bindPopup('Llyn Cerrig Bach').addTo(mymap);
+        // Roman Sites
+        var romantemple = L.marker([51.5125, -0.0906]).bindPopup('Roman Temple of Mithras').addTo(mymap);
+        var baths = L.marker([51.3809, -2.3595]).bindPopup('Roman Baths').addTo(mymap);
+        var hoxne = L.marker([52.3425, 1.1875]).bindPopup('Hoxne Hoard').addTo(mymap);
+        var colchester = L.marker([51.891944, 0.898056]).bindPopup('Colchester Roman Town').addTo(mymap);
+        var vindolanda = L.marker([54.9911, -2.3608]).bindPopup('Vindolanda').addTo(mymap);
+        var housesteads = L.marker([55.013, -2.331]).bindPopup('Housesteads Roman Fort').addTo(mymap);
+        // Anglo-Saxon Sites
+        var bamburgh = L.marker([55.608, -1.709]).bindPopup('Bamburgh Castle').addTo(mymap);
+        var lindisfarne = L.marker([55.68, -1.8025]).bindPopup('Lindisfarne Priory').addTo(mymap);
+        var repton = L.marker([52.841308, -1.55102]).bindPopup('Repton Abbey').addTo(mymap);
+        var bedale = L.marker([54.29, -1.59]).bindPopup('Bedale Hoard').addTo(mymap);
+        var prittlewell = L.marker([51.55391, 0.70873]).bindPopup('Prittlewell Princely Burial').addTo(mymap);
+        var sutton = L.marker([52.089, 1.338]).bindPopup('Sutton Hoo').addTo(mymap);
+        var spong = L.marker([52.737, 0.934]).bindPopup('Spong Hill').addTo(mymap);
+        // Medieval Sites
+        var canterbury = L.marker([51.2797, 1.0831]).bindPopup('Canterbury Cathedral').addTo(mymap);
+        var salisbury = L.marker([51.064722, -1.7975]).bindPopup('Salisbury Cathedral').addTo(mymap);
+        var york = L.marker([53.961944, -1.081944]).bindPopup('York Minster').addTo(mymap);
+        var bodiam = L.marker([51.0023, 0.5435]).bindPopup('Bodiam Castle').addTo(mymap);
+        var caernarfon = L.marker([53.1393, -4.2769]).bindPopup('Caernarfon Castle').addTo(mymap);
+        
+        // Add markers to a marker group
+        var paleoSites = L.layerGroup([paviland, kents, goughs, creswell, eartham, swanscombe, happisburgh]); 
+        paleoSites.addTo(mymap); // Add the marker group to the map
+        var mesoSites = L.layerGroup([starcarr, howick, oare, hauxley, fawr, sandel]); 
+        mesoSites.addTo(mymap); // Add the marker group to the map
+        var neoSites = L.layerGroup([skarabrae, pentre, bryn, stonehenge, avebury, silbury, callanish, brodgar]); 
+        neoSites.addTo(mymap); // Add the marker group to the map
+        var bronzeSites = L.layerGroup([mustfarm, grimspound, flag, beaghmore, milton, rillaton]); 
+        bronzeSites.addTo(mymap); // Add the marker group to the map
+        var ironSites = L.layerGroup([glastonbury, carn, oswestry, maiden, danebury, honington, cerrig]); 
+        ironSites.addTo(mymap); // Add the marker group to the map
+        var romanSites = L.layerGroup([romantemple, baths, hoxne, colchester, vindolanda, housesteads]); 
+        romanSites.addTo(mymap); // Add the marker group to the map
+        var angloSites = L.layerGroup([bamburgh, lindisfarne, repton, bedale, prittlewell, sutton, spong]); 
+        angloSites.addTo(mymap); // Add the marker group to the map
+        var medievalSites = L.layerGroup([canterbury, salisbury, york, bodiam, caernarfon]); 
+        medievalSites.addTo(mymap); // Add the marker group to the map
+
+// SITE AGE OVERLAYS
+        var overlays = {
+            "Paleolithic Sites": paleoSites,
+            "Mesolithic Sites": mesoSites,
+            "Neolithic Sites": neoSites,
+            "Bronze Age Sites": bronzeSites,
+            "Iron Age Sites": ironSites,
+            "Roman Sites": romanSites,
+            "Anglo-Saxon Sites": angloSites,
+            "Medieval Sites": medievalSites
+        };
+
+        var popup = L.popup();
+
+    function onMapClick(e) {
+        // Round latitude and longitude values to four decimals
+        var roundedLat = e.latlng.lat.toFixed(4);
+        var roundedLng = e.latlng.lng.toFixed(4);
+
+        popup
+            .setLatLng(e.latlng)
+            .setContent(roundedLat + ", " + roundedLng) // Concatenate rounded latitude and longitude
+            .openOn(mymap);
+    }
+
+        mymap.on('click', onMapClick);
+        
+    // Define an array to store the layers by category
+        var layersArray = [paleoSites, mesoSites, neoSites, bronzeSites, ironSites, romanSites, angloSites, medievalSites];
+
+    // Event listener for slider change
+    $('#timeSlider').on('input', function() {
+        var value = parseInt($(this).val()); // Convert slider value to integer
+        // Loop through the layers array
+        layersArray.forEach(function(layerGroup, index) {
+            // Check if the index is less than or equal to the slider value
+            if (index <= value) {
+                layerGroup.addTo(mymap);
+            } else {
+                mymap.removeLayer(layerGroup);
+            }
+        });
+    });
+        
+    });
+</script>
+</body>
+</html>
