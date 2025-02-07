@@ -49,6 +49,45 @@
             padding: 20px;
             text-align: center;
         }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            min-width: 235px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #666;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown > a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+            display: inline-block;
+            line-height: normal;
+        }
+        .dropdown:hover > a {
+            background: #555;
+        }
+        
     </style>
 </head>
 <body>
@@ -57,13 +96,21 @@
     </header>
     <nav>
         <a href="index.html">About</a>
-        <a href="portfolio.html">Portfolio</a>
+        <div class="dropdown">
+            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown-content">
+                <a href="postgrad_maps.html">Postgraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_arcgis.html">Undergraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_mapublisher.html">Undergraduate Maps Using Adobe Illustrator & MAPublisher</a>
+                <a href="undergrad_qgis.html">Undergraduate Maps Using QGIS</a>
+            </div>
+        </div>
         <a href="presentations.html">Presentations</a>
         <a href="contact.html">Contact</a>
     </nav>
     <div class="container">
         <h2>About me!</h2>
-        <p style="line-height: 1.5; padding-left: 35px; padding-right: 35px">
+        <p style="line-height: 1.5; padding-left: 5%; padding-right: 5%">
             Hi! I'm Madeline, a master's student in Digital Archaeology at the University of York (UK). I hold a Bachelor of Science in <b>Archaeological Studies</b> from the University of Wisconsin-La Crosse (USA) with minors in <b>History</b>, <b>Earth Science</b>, and <b>Geoarchaeology</b>, plus a <b>Geographic Information Systems</b> (GIS) Certificate. I'm passionate about using geospatial technologies to address real-world challenges in archaeology, environmental sciences, and beyond. Explore this website to learn more about what I do!
         </p>
         <img src="Images/me1.jpg" style="max-width:50%; height:auto;">

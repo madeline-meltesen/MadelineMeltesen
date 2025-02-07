@@ -77,6 +77,43 @@
             background: #555;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            min-width: 235px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #666;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown > a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+            display: inline-block;
+            line-height: normal;
+        }
+        .dropdown:hover > a {
+            background: #555;
+        }        
     </style>
 </head>
 <body>
@@ -85,7 +122,15 @@
     </header>
     <nav>
         <a href="index.html">About</a>
-        <a href="portfolio.html">Portfolio</a>
+        <div class="dropdown">
+            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown-content">
+                <a href="postgrad_maps.html">Postgraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_arcgis.html">Undergraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_mapublisher.html">Undergraduate Maps Using Adobe Illustrator & MAPublisher</a>
+                <a href="undergrad_qgis.html">Undergraduate Maps Using QGIS</a>
+            </div>
+        </div>
         <a href="presentations.html">Presentations</a>
         <a href="contact.html">Contact</a>
     </nav>
@@ -97,7 +142,7 @@
     <div class="container-right">
         <p style="margin-top: 10px">Email: m.meltesen@gmail.com
         <br>Phone Number (UK): +44 7570 629760
-        <br>Phone Number (USA): +1 (847)385-4165
+        <br>Phone Number (USA): +1 (847) 385-4165
         <br>LinkedIn: <a href="https://www.linkedin.com/in/madeline-meltesen" target="_blank">www.linkedin.com/in/madeline-meltesen</a>.
         <br><br>
         </p>
