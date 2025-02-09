@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madeline Meltesen</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: 'Lexend', sans-serif;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Lexend Exa', sans-serif;
+        }
+        img {
+            margin-top: 0px;
+            padding: 0;
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.1));
+        }
+        h3 {
+            line-height: 1.5; 
+            padding-left: 12%; 
+            padding-right: 12%;
+            margin-bottom: 10px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 1px;
+            text-align: center;
+            font-family: 'Lexend Exa', sans-serif;
+            font-size: 90%;
+            clear: both;
+        }
+        .container-head {
+            padding: 20px;
+            padding-bottom: 0px;
+            text-align: center;
+            max-width: 100%;
+        }
+        .container-left {
+            padding: 0px;
+            padding-left: 10%;
+            text-align: center;
+            width: 40%;
+            float: left;  
+            margin-bottom: 20px;
+        }
+        .container-right {
+            padding: 0px;
+            padding-right: 10%;
+            text-align: center;
+            width: 40%;
+            float: right;  
+            margin-bottom: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            padding: 10px;
+            max-width: 100%;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            background: #555;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-bottom: 0px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gallery img {
+            max-width: 40%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }     
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Adjust to center caption vertically */
+            text-align: center;
+        }
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 5px;
+        }
+
+        .modal .caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal .prev,
+        .modal .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            user-select: none;
+        }
+        .modal .prev {
+            left: 10%;
+        }
+
+        .modal .next {
+            right: 10%;
+        }
+
+        .modal .prev:hover,
+        .modal .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }      
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            min-width: 235px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #666;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown > a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            margin: 0 10px;
+            display: inline-block;
+            line-height: normal;
+        }
+        .dropdown:hover > a {
+            background: #555;
+        }
+       
+        #myBtn {
+          display: none; /* Hidden by default */
+          position: fixed; /* Fixed/sticky position */
+          bottom: 20px; /* Place the button at the bottom of the page */
+          right: 30px; /* Place the button 30px from the right */
+          z-index: 99; /* Make sure it does not overlap */
+          border: none; /* Remove borders */
+          outline: none; /* Remove outline */
+          background-color: #444; /* Set a background color */
+          color: white; /* Text color */
+          cursor: pointer; /* Add a mouse pointer on hover */
+          padding: 12px; /* Some padding */
+          border-radius: 10px; /* Rounded corners */
+          font-size: 16px; /* Increase font size */
+          font-family: 'Lexend', sans-serif;
+        }
+        #myBtn:hover {
+          background-color: #555; /* Add a dark-grey background on hover */
+        } 
+        
+    <!--BACK TO TOP BUTTON-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Madeline Meltesen</h1>
+    </header>
+    <nav>
+        <a href="index.html">About</a>
+        <div class="dropdown">
+            <a href="portfolio.html">Portfolio</a>
+            <div class="dropdown-content">
+                <a href="postgrad_maps.html">Postgraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_arcgis.html">Undergraduate Maps Using ArcGIS Pro</a>
+                <a href="undergrad_mapublisher.html">Undergraduate Maps Using Adobe Illustrator & MAPublisher</a>
+                <a href="undergrad_webmaps.html">Undergraduate WebMaps</a>
+                <a href="undergrad_qgis.html">Undergraduate Maps Using QGIS</a>
+                <a href="3d_models.html">3D Models Using Agisoft Metashape</a>
+            </div>
+        </div>
+        <a href="presentations.html">Presentations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <h2 style="margin-bottom: 0px;">3D Models Using Agisoft Metashape</h2>
+        <p style="line-height: 1.5; padding-left: 9%; padding-right: 9%;">During my Digital Archaeology internship, I created 3D models of cultural materials using proper photogrammetry techniques. 
+        </p>
+    </div>
+    
+    <div class="container-left">
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oUnpB" target="_blank">Ceramic Colander</a>
+        </h3>
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/863eefc0643e483db712888d94ff1c52/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>
+        <br>        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oSyW7" target="_blank">Ceramic Vessel</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/a05f7b8c90de4920be1644fed71a4d74/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>        
+        
+        <br>
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/p9Eyu" target="_blank">Black Glazed Pointed Handled Vessel</a>
+        </h3>
+        
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/40cc048814db4709a2976952964157d4/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>
+        
+        <br>
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oUnov" target="_blank">Animal Figurine</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7927853e055248f3bf537ee14da39fe7/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>   
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oSyVD" target="_blank">Ceramic Three-Legged Vessel</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/f7ef9c7525a443aebc802220083f2869/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>   
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/p9Eyo" target="_blank">Oil Lamp</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/ac8782b09b96452b87446352860a3d8b/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>     
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oXOCN" target="_blank">Jesus in Manger</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/5a818f39135546f482487791f18ba39b/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>             
+    </div>
+
+    <div class="container-right">  
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/p9ExQ" target="_blank">Scarab Bead</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/5311eb5c4167449b8bef355e2271c676/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oUnpR" target="_blank">Faience Lioness</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/0c7bc234b92b4d858b6d14d02ec1fdc5/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>        
+        
+        <br>
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oUnp8" target="_blank">Flint Axe</a>
+        </h3>        
+        
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/0052e20625f646f69b317204661d7769/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>        
+        
+        <br>   
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oUnoJ" target="_blank">Antler Hafted Tool</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/307d2b92b2624cfb852190784e83e9f4/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>      
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/p9ExT" target="_blank">Chert Projectile Point</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/69f551711d56442d9c3327b15f3e3396/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>   
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/p9ExW" target="_blank">Chert Projectile Point</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/3f460097d3ea4b96aa07352e6dee1670/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>
+        
+        <h3 style="line-height: 1.5">
+        <a href="https://skfb.ly/oyTrA" target="_blank">Marney Grave Monument</a>
+        </h3>
+
+            <div class="sketchfab-embed-wrapper" style="width: 100%" > <iframe title="Ceramic Colander" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/5d3ebf86622f4c8d8b3773569264c24f/embed" style="width: 70%; height: 30vh; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1)"> </iframe> 
+            </div>       
+        
+        <br>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Madeline Meltesen.</p>
+    </footer>
+
+    <!--BACK TO TOP BUTTON-->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    
+</body>
+    
+    <!-- image gallery js -->
+    <script src="Image_gallery.js"></script>
+    <!-- top button js -->
+    <script src="ToTop_button.js"></script>
+    
+</html>
