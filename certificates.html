@@ -12,6 +12,7 @@
             padding: 0;
             background-color: #f4f4f4;
             font-family: 'Lexend', sans-serif;
+            height: 100%;
         }
         header {
             background: #333;
@@ -20,43 +21,29 @@
             text-align: center;
             font-family: 'Lexend Exa', sans-serif;
         }
-        
-        h3 {
-            line-height: 1.5; 
-            padding-left: 15%; 
-            padding-right: 15%;
-            margin-bottom: 10px;
-        }
         footer {
             background: #333;
             color: #fff;
-            padding: 1px;
+            padding: 4px;
+            padding-top: 14.5px;
             text-align: center;
             font-family: 'Lexend Exa', sans-serif;
             font-size: 90%;
             clear: both;
-        }
-        .container-head {
-            padding: 20px;
+        }            
+        h3 {
+            margin-bottom: 5px;
+            padding-left: 25px;
+            padding-right: 25px;
             padding-bottom: 0px;
-            text-align: center;
-            max-width: 100%;
+            line-height: 1.5;
         }
-        .container-left {
-            padding: 0px;
-            padding-left: 10%;
-            text-align: center;
-            width: 40%;
-            float: left;  
-            margin-bottom: 20px;
-        }
-        .container-right {
-            padding: 0px;
-            padding-right: 10%;
-            text-align: center;
-            width: 40%;
-            float: right;  
-            margin-bottom: 20px;
+        p {
+            padding-left: 4%;
+            padding-right: 4%;
+            margin: 10px;
+            margin-top: 0px;
+            line-height: 1.5;
         }
         nav {
             display: flex;
@@ -74,13 +61,33 @@
         nav a:hover {
             background: #555;
         }
-        .container {
+        .container-head {
             padding: 20px;
-            text-align: center;
             padding-bottom: 0px;
-            padding-left: 10%;
-            padding-right: 10%;
+            text-align: center;
+            max-width: 100%;
         }
+        .container {
+            padding-bottom: 10px;
+            text-align: center;
+            max-width: 100%;
+        }
+        .container-left {
+            padding: 0px;
+            padding-left: 5%;
+            text-align: center;
+            width: 45%;
+            float: left;  
+            margin-bottom: 20px;
+        }
+        .container-right {
+            padding: 0px;
+            padding-right: 5%;
+            text-align: center;
+            width: 45%;
+            float: right;  
+            margin-bottom: 20px;
+        }        
         .gallery {
             display: flex;
             flex-wrap: wrap;
@@ -88,9 +95,8 @@
             justify-content: center;
             margin-top: 10px;
         }
-
         .gallery img {
-            max-width: 40%;
+            max-width: 30%;
             height: auto;
             object-fit: contain;
             border-radius: 5px;
@@ -119,7 +125,7 @@
         }
         .modal .caption {
             color: white;
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
         }
@@ -142,15 +148,13 @@
         .modal .prev {
             left: 10%;
         }
-
         .modal .next {
             right: 10%;
         }
-
         .modal .prev:hover,
         .modal .next:hover {
             background-color: rgba(0, 0, 0, 0.8);
-        }     
+        }
         
         /* Dropdown Styles */
         .dropdown {
@@ -189,7 +193,7 @@
         .dropdown:hover > a {
             background: #555;
         }
-          
+
         #myBtn {
           display: none; /* Hidden by default */
           position: fixed; /* Fixed/sticky position */
@@ -208,8 +212,10 @@
         }
         #myBtn:hover {
           background-color: #555; /* Add a dark-grey background on hover */
-        }         
+        }     
+        
     </style>
+
 </head>
 <body>
     <header>
@@ -232,77 +238,61 @@
         <a href="presentations.html">Presentations</a>
         <a href="contact.html">Contact</a>
     </nav>
-    <div class="container">
-        <h2 style="margin-bottom: 0px;">Undergraduate Maps Using Adobe Illustrator & MAPublisher</h2>
-        <p style="line-height: 1.5; padding-left: 11%; padding-right: 11%;">During the latter half of my undergraduate studies, I learned map design principles as part of my GIS certificate. This included visual hierarchy and colour theory concepts.
-        </p>
+    <div class="container-head">
+        <h2>Certificates</h2>
     </div>
     
-    <div class="container-left">
-        <h3>Republic of Indonesia, Greyscale</h3>
+    <div class="container">
+        <h3>
+            Esri Cartography
+        </h3>
+        <p>August - October 2025<br>
+            Applied the latest ArcGIS Pro 2D and 3D map design tools to author beautiful, effective information products. <br>
+            Learn more about this course <a href="https://www.esri.com/training/catalog/596e584bb826875993ba4ebf/cartography/" target="_blank">here</a>.
+        </p>
         <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design1.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Greyscale">
+            <img src="Images/Cartography_MOOC/Cartography_Certificate_MM.png" style="max-width: 20%"; height="auto"; 
+                 data-caption="Esri Cartography Certificate of Completion">
+            <img src="Images/Cartography_MOOC/Week1_MA.png" style="max-width: 20%"; height="auto"; 
+                 data-caption="Symbology and labelling practise on a map of Massachusetts">
+            <img src="Images/Cartography_MOOC/Week2_Projections_MadelineMeltesen1.png" style="max-width: 20%"; height="auto"; 
+                 data-caption="Practise with map projections and data classification">
+            <img src="Images/Cartography_MOOC/Week2_Projections_MadelineMeltesen2.png" style="max-width: 20%"; height="auto"; 
+                 data-caption="Practise with map projections and data classification">
+            <img src="Images/Cartography_MOOC/Week3_WellingtonMap.png" style="max-width: 20%"; height="auto"; 
+                 data-caption="Generalising data and scale-based display and symbology">
+            <img src="Images/Cartography_MOOC/Week4_NewYork.png" style="max-width: 15%"; height="auto"; 
+                 data-caption="Refining labels on a map of New York">
+            <img src="Images/Cartography_MOOC/Week5_3D_Naperville.png" style="max-width: 15%"; height="auto"; 
+                 data-caption="Authoring a map with 3D symbology">
+            <img src="Images/Cartography_MOOC/Week5_Landslide.png" style="max-width: 15%"; height="auto"; 
+                 data-caption="Combining elevation surfaces with matching imagery layers">
+            <img src="Images/Cartography_MOOC/Week6_Earthquakes_1.png" style="max-width: 15%"; height="auto"; 
+                 data-caption="Mapping change with small multiples">
         </div>
         <br>
-        <h3>Republic of Indonesia, Green</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design2.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Green">
-        </div>
-        <br>
-        <h3>Republic of Indonesia, Blue</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design3.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Blue">
-        </div>
-        <br>
-        <h3>Republic of Indonesia, Purple</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design4.png" style="max-width: 75%"; height="auto"; data-caption="Republic of Indonesia, Purple">
-        </div>
-        <br>        
     </div>
 
-    <div class="container-right">  
-        <h3>Contiguous United States</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design5.png" style="max-width: 75%"; height="auto"; data-caption="Contiguous United States">
-        </div>
-        <br>
-        <h3>United States International Exports</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design6.png" style="max-width: 75%"; height="auto"; data-caption="United States International Exports">
-        </div>
-        <br>
-        <h3>Lava Flow Hazard Zones of Hawaii's Big Island</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design7.png" style="max-width: 72%"; height="auto"; data-caption="Lava Flow Hazard Zones of Hawaii's Big Island">
-        </div>
-        <br>        
-        <h3>The Lake Winnebago Corridor, Wisconsin, USA</h3>
-        <div class="gallery">
-            <img src="Images/GIS_maps/Map_Design/design8.png" style="max-width: 72%"; height="auto"; data-caption="The Lake Winnebago Corridor, Wisconsin, USA">
-        </div>
-        <br>        
+    <!-- enlarge image format -->
+    <div class="modal" id="imageModal">
+        <span class="prev" id="prev">&#10094;</span>
+        <img id="modalImage" src="" alt="Enlarged Image">
+        <div id="caption" class="caption"></div> <!-- Caption area -->
+        <span class="next" id="next">&#10095;</span>
     </div>
 
     <footer>
         <p>&copy; 2025 Madeline Meltesen.</p>
     </footer>
 
-    <div id="imageModal" class="modal">
-        <span class="prev" id="prev">&#10094;</span>
-        <img id="modalImage">
-        <div class="caption" id="caption"></div>
-        <span class="next" id="next">&#10095;</span>
-    </div>
-
     <!--BACK TO TOP BUTTON-->
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    
+
 </body>
     
     <!-- image gallery js -->
     <script src="Image_gallery.js"></script>
     <!-- top button js -->
     <script src="ToTop_button.js"></script>
-   
+    
 </html>
